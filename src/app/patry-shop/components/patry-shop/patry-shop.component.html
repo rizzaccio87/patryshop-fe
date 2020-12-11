@@ -1,1 +1,6 @@
-<p>patry-shop works!</p>
+<h2>Vetrina Dolci</h2>
+
+<app-grid
+  [rows]="orders$ | async"
+  [columns]="columns"
+></app-grid>

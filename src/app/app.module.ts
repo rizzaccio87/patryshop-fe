@@ -13,6 +13,7 @@ import en from '@angular/common/locales/en';
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {NzButtonModule} from 'ng-zorro-antd/button';
 import {NzModalModule} from 'ng-zorro-antd/modal';
+import {CoreModule} from './core/core.module';
 
 registerLocaleData(en);
 
@@ -26,7 +27,8 @@ registerLocaleData(en);
     HttpClientModule,
     NzLayoutModule,
     NzButtonModule,
-    NzModalModule
+    NzModalModule,
+    CoreModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
