@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {BackOfficeComponent} from './components/back-office/back-office.component';
 
-import { BackOfficeComponent } from './back-office.component';
 
-const routes: Routes = [{ path: '', component: BackOfficeComponent }];
+const routes: Routes = [{path: '', component: BackOfficeComponent}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class BackOfficeRoutingModule { }
+export class BackOfficeRoutingModule {
+}
