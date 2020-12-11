@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { PatryShopRoutingModule } from './patry-shop-routing.module';
-import { PatryShopComponent } from './patry-shop.component';
+import {PatryShopRoutingModule} from './patry-shop-routing.module';
+import {PatryShopComponent} from './components/patry-shop/patry-shop.component';
 
 
 @NgModule({
@@ -12,4 +12,5 @@ import { PatryShopComponent } from './patry-shop.component';
     PatryShopRoutingModule
   ]
 })
-export class PatryShopModule { }
+export class PatryShopModule {
+}

@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { BackOfficeRoutingModule } from './back-office-routing.module';
-import { BackOfficeComponent } from './back-office.component';
+import {BackOfficeRoutingModule} from './back-office-routing.module';
+import {BackOfficeComponent} from './components/back-office/back-office.component';
 
 
 @NgModule({
@@ -12,4 +12,5 @@ import { BackOfficeComponent } from './back-office.component';
     BackOfficeRoutingModule
   ]
 })
-export class BackOfficeModule { }
+export class BackOfficeModule {
+}
