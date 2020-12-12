@@ -13,7 +13,7 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired>Prezzo</nz-form-label>
     <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="priceErrorTpl">
-      <input nz-input formControlName="price" type="number" />
+      <input nz-input formControlName="price" type="number" [readOnly]="readonly" />
       <ng-template #priceErrorTpl let-control>
         <ng-container *ngIf="control.hasError('required')">
           Inserisci il prezzo!
@@ -24,11 +24,11 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired>Ingredienti</nz-form-label>
     <nz-form-control [nzSpan]="12" nzErrorTip="Inserisci gli ingredienti!">
-      <textarea formControlName="ingredients" nz-input rows="4" placeholder="Aggiungi gli ingredienti ..."></textarea>
+      <textarea formControlName="ingredients" nz-input rows="4" placeholder="Aggiungi gli ingredienti ..." [readOnly]="readonly"></textarea>
     </nz-form-control>
   </nz-form-item>
 </form>
 <div *nzModalFooter>
-  <button nz-button nzType="default" (click)="destroyModal()">Annulla</button>
-  <button nz-button nzType="primary" [disabled]="!form.valid" (click)="onConfirm()">Aggiungi</button>
+  <button nz-button nzType="default" (click)="destroyModal()" *ngIf="!readonly">Annulla</button>
+  <button nz-button nzType="primary" [disabled]="!form.valid" (click)="onConfirm()">{{submitLabel}}</button>
 </div>

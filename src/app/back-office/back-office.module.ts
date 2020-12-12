@@ -10,10 +10,14 @@ import {NzTabsModule} from 'ng-zorro-antd/tabs';
 import {NzModalModule} from 'ng-zorro-antd/modal';
 import {BackOfficeTabComponent} from './components/back-office-tab/back-office-tab.component';
 import {NzButtonModule} from 'ng-zorro-antd/button';
+import {ModalCreateCakeComponent} from './components/modal-create-cake/modal-create-cake.component';
+import {NzFormModule} from 'ng-zorro-antd/form';
+import {NzInputModule} from 'ng-zorro-antd/input';
+import { ModalUpdateCakeComponent } from './components/modal-update-cake/modal-update-cake.component';
 
 
 @NgModule({
-  declarations: [BackOfficeComponent, BackOfficeTabComponent],
+  declarations: [BackOfficeComponent, BackOfficeTabComponent, ModalCreateCakeComponent, ModalUpdateCakeComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -22,6 +26,8 @@ import {NzButtonModule} from 'ng-zorro-antd/button';
     NzTabsModule,
     NzButtonModule,
     NzModalModule,
+    NzFormModule,
+    NzInputModule,
     CoreModule,
     SharedModule
   ]

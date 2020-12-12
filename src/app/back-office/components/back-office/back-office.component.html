@@ -10,18 +10,20 @@
         [items]="cakes$ | async"
         [columns]="cakeColumns"
         [actions]="cakeActions"
+        (actionSelect)="onItemActionSelect($event)"
       ></app-back-office-tab>
     </ng-template>
   </nz-tab>
   <nz-tab nzTitle="Ordini">
     <ng-template nz-tab>
       <app-back-office-tab
-        tabTitle="Ordini"
+        tabTitle="Vetrina"
         tabType="order"
         createButtonLabel="Aggiungi Ordine"
         [items]="orders$ | async"
         [columns]="orderColumns"
         [actions]="orderActions"
+        (actionSelect)="onItemActionSelect($event)"
       ></app-back-office-tab>
     </ng-template>
   </nz-tab>
