@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {OrderService} from '../../../core/services/order.service';
 import {Observable} from 'rxjs';
 import {Order} from '../../../core/interfaces/order';
 import {GridColumn} from '../../../shared/interfaces/grid';
+// @ts-ignore
+import moment from 'moment';
 
 @Component({
   selector: 'app-patry-shop',
@@ -11,15 +13,14 @@ import {GridColumn} from '../../../shared/interfaces/grid';
 })
 export class PatryShopComponent implements OnInit {
 
-  public orders$: Observable<Order[]>;
-  public columns: GridColumn[] = [];
-
   constructor(private orderService: OrderService) {
     this.columns = OrderService.GRID_COLUMNS;
   }
 
-  ngOnInit(): void {
-    this.orders$ = this.orderService.loadOrders();
-  }
+  public orders$: Observable<Order[]>;
+  public columns: GridColumn[] = [];
 
+  ngOnInit(): void {
+    this.orders$ = this.orderService.loadOrders(true);
+  }
 }

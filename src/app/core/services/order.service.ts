@@ -34,6 +34,7 @@ export class OrderService {
     type: 'remove'
   }];
 
+  public static DATE_FORMAT = 'DD/MM/YYYY';
   private static RESOURCE = 'orders';
   private endpoint: string;
 
@@ -41,15 +42,45 @@ export class OrderService {
     this.endpoint = `${this.request.baseUrl}/${OrderService.RESOURCE}`;
   }
 
-  loadOrders(): Observable<Order[]> {
+  public static calculatePrice(order: Order): number {
+    let price = order.price;
+    const delta = moment().diff(order.creationTimestamp, 'days');
+    switch (delta) {
+      case 0:
+        price = order.price;
+        break;
+      case 1:
+        price = order.price * 0.8;
+        break;
+      case 2:
+        price = order.price * 0.2;
+    }
+
+    return price;
+  }
+
+  loadOrders(calculatePrice?: boolean): Observable<Order[]> {
     return this.http.get(`${this.endpoint}`).pipe(
       map((res: any[]) => {
-        return (res.map(item => {
+        let orders = (res || []) as Order[];
+
+        if (calculatePrice) {
+          orders = res.filter(order => {
+            return moment().diff(order.creationTimestamp, 'days') < 3;
+          }).map(order => {
+            return {
+              ...order,
+              price: OrderService.calculatePrice(order)
+            };
+          });
+        }
+
+        return orders.map(order => {
           return {
-            ...item,
-            creationTimestamp: moment(item.creationTimestamp).format('DD/MM/YYYY')
+            ...order,
+              creationTimestamp: moment(order.creationTimestamp).format(OrderService.DATE_FORMAT)
           };
-        }) || []) as Order[];
+        });
       }));
   }
 
