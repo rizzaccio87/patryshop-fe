@@ -33,7 +33,7 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
       title: 'Data'
     }, {
       field: 'cakeName',
-      title: 'Torta'
+      title: 'Dolce'
     }, {
       field: 'amount',
       title: 'Disponibilità'
@@ -44,7 +44,7 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
 
     this.cakeColumns = [{
       field: 'name',
-      title: 'Nome Torta'
+      title: 'Nome Dolce'
     }, {
       field: 'price',
       title: 'Prezzo'

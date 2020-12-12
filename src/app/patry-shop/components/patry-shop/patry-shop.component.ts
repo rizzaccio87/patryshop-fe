@@ -20,7 +20,7 @@ export class PatryShopComponent implements OnInit {
       title: 'Data'
     }, {
       field: 'cakeName',
-      title: 'Torta'
+      title: 'Dolce'
     }, {
       field: 'amount',
       title: 'Disponibilità'
