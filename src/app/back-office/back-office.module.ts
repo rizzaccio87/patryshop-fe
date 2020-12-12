@@ -17,6 +17,7 @@ import {ModalUpdateCakeComponent} from './components/modal-update-cake/modal-upd
 import {ModalCreateOrderComponent} from './components/modal-create-order/modal-create-order.component';
 import {ModalUpdateOrderComponent} from './components/modal-update-order/modal-update-order.component';
 import {NzSelectModule} from 'ng-zorro-antd/select';
+import {NzNotificationModule} from 'ng-zorro-antd/notification';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import {NzSelectModule} from 'ng-zorro-antd/select';
     NzFormModule,
     NzInputModule,
     NzSelectModule,
+    NzNotificationModule,
     CoreModule,
     SharedModule
   ]

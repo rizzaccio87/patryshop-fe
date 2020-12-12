@@ -11,6 +11,7 @@ import {ModalCreateCakeComponent} from '../modal-create-cake/modal-create-cake.c
 import {ModalUpdateCakeComponent} from '../modal-update-cake/modal-update-cake.component';
 import {ModalCreateOrderComponent} from '../modal-create-order/modal-create-order.component';
 import {ModalUpdateOrderComponent} from '../modal-update-order/modal-update-order.component';
+import {NzNotificationService} from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-back-office',
@@ -27,47 +28,11 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription = new Subscription();
 
-  constructor(private cakeService: CakeService, private orderService: OrderService, private modalService: NzModalService) {
-    this.orderColumns = [{
-      field: 'creationTimestamp',
-      title: 'Data'
-    }, {
-      field: 'cakeName',
-      title: 'Dolce'
-    }, {
-      field: 'amount',
-      title: 'Disponibilità'
-    }, {
-      field: 'price',
-      title: 'Prezzo'
-    }];
-
-    this.cakeColumns = [{
-      field: 'name',
-      title: 'Nome Dolce'
-    }, {
-      field: 'price',
-      title: 'Prezzo'
-    }];
-
-    this.orderActions = [{
-      label: 'Aggiorna',
-      type: 'update'
-    }, {
-      label: 'Rimuovi',
-      type: 'remove'
-    }];
-
-    this.cakeActions = [{
-      label: 'Visualizza',
-      type: 'view'
-    }, {
-      label: 'Aggiorna',
-      type: 'update'
-    }, {
-      label: 'Rimuovi',
-      type: 'remove'
-    }];
+  constructor(private cakeService: CakeService, private orderService: OrderService, private modalService: NzModalService, private notification: NzNotificationService) {
+    this.orderColumns = OrderService.GRID_COLUMNS;
+    this.cakeColumns = CakeService.GRID_COLUMNS;
+    this.orderActions = OrderService.GRID_ACTIONS;
+    this.cakeActions = CakeService.GRID_ACTIONS;
   }
 
   ngOnInit(): void {
@@ -105,7 +70,7 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
   private showRemoveConfirmModal(tabType: 'cake' | 'order', item: any): void {
     const title = (tabType === 'cake') ?
       `<i>Vuoi rimuovere il dolce ${item?.name}? </i>` :
-      `<i>Vuoi rimuovere la disponibilità del dolce ${item?.cakeName}? </i>`;
+      `<i>Vuoi rimuovere la disponibilità del dolce ${item?.cakeName} dalla vetrina? </i>`;
 
     this.modalService.confirm({
       nzTitle: title,
@@ -114,13 +79,35 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
           this.subscription.add(this.cakeService.removeCake(item.id).subscribe((result) => {
             if (result) {
               this.cakes$ = this.cakeService.loadCakes();
+              this.notification.create(
+                'success',
+                'Rimozione dolce',
+                `La rimozione del dolce ${item?.name} è avvenuta con successo.`
+              );
             }
+          }, () => {
+            this.notification.create(
+              'error',
+              'Rimozione dolce',
+              `Errore in fase di rimozione del dolce ${item?.name}.`
+            );
           }));
         } else {
           this.subscription.add(this.orderService.removeOrder(item.orderId).subscribe((result) => {
             if (result) {
+              this.notification.create(
+                'success',
+                'Rimozione dolce in vetrina',
+                `La rimozione del dolce ${item?.cakeName} dalla vetrina è avvenuta con successo.`
+              );
               this.orders$ = this.orderService.loadOrders();
             }
+          }, () => {
+            this.notification.create(
+              'error',
+              'Rimozione dolce in vetrina',
+              `Errore in fase di rimozione del dolce ${item?.cakeName} dalla vetrina.`
+            );
           }));
         }
       }
@@ -136,11 +123,27 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
     });
     modalRef.afterClose.asObservable().subscribe(res => {
       if (res) {
+        let notificationTitle = '';
+        let notificationMessage = '';
+
         if (tabType === 'cake') {
+          notificationTitle = 'Aggiunta dolce';
+          notificationMessage = `Il dolce ${res.name} è stato aggiunto con successo.`;
           this.cakes$ = this.cakeService.loadCakes();
         } else {
+          notificationTitle = 'Aggiunta dolce in vetrina';
+          notificationMessage = `Il dolce ${res.name} è stato aggiunto in vetrina con successo.`;
           this.orders$ = this.orderService.loadOrders();
         }
+
+        this.notification.create('success', notificationTitle, notificationMessage);
+      } else {
+        // error
+        this.notification.create(
+          'error',
+          (tabType === 'cake') ? 'Aggiunta dolce' : 'Aggiunta dolce alla vetrina',
+          (tabType === 'cake') ? `Errore in fase di aggiunta del dolce.` : `Errore in fase di aggiunta del dolce alla vetrina.`
+        );
       }
     });
   }
@@ -157,11 +160,28 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
     });
     modalRef.afterClose.asObservable().subscribe(res => {
       if (res) {
+        let notificationTitle = '';
+        let notificationMessage = '';
+
         if (tabType === 'cake') {
+          notificationTitle = 'Modifica dolce';
+          notificationMessage = `Il dolce ${res.name} è stato modificato con successo.`;
           this.cakes$ = this.cakeService.loadCakes();
         } else {
+          notificationTitle = 'Modifica dolce in vetrina';
+          notificationMessage = `La disponibilità del dolce ${res.cakeName} in vetrina è stata modificata con successo.`;
           this.orders$ = this.orderService.loadOrders();
         }
+
+        this.notification.create('success', notificationTitle, notificationMessage);
+      } else {
+        // error
+        this.notification.create(
+          'error',
+          (tabType === 'cake') ? 'Modifica dolce' : 'Modifica disponibilità dolce',
+          (tabType === 'cake') ? `Errore in fase di modifica del dolce ${res?.name}.` :
+            `Errore in fase di modifica della disponibilità del dolce ${res?.cakeName} in vetrina.`
+        );
       }
     });
   }
