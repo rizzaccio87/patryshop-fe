@@ -1,34 +1,24 @@
 <nz-table #table [nzData]="rows">
   <thead>
   <tr>
-<!--    <th>Data</th>-->
-<!--    <th>Torta</th>-->
-<!--    <th>Disponibilità</th>-->
-<!--    <th>Prezzo</th>-->
-<!--    <th>Action</th>-->
-
     <ng-container *ngFor="let column of columns">
       <th [nzColumnKey]="column.field">{{column.title}}</th>
+    </ng-container>
+    <ng-container *ngIf="!hideActions">
+      <th>Azioni</th>
     </ng-container>
   </tr>
   </thead>
   <tbody>
-<!--  <tr *ngFor="let data of table.data">-->
-<!--    <td>{{ data.creationTimestamp }}</td>-->
-<!--    <td>{{ data.cakeName }}</td>-->
-<!--    <td>{{ data.amount }}</td>-->
-<!--    <td>{{ data.price }}</td>-->
-<!--    <ng-container *ngIf="!readonly">-->
-<!--      <td>-->
-<!--        <a>Action 一 {{ data.name }}</a>-->
-<!--        <nz-divider nzType="vertical"></nz-divider>-->
-<!--        <a>Delete</a>-->
-<!--      </td>-->
-<!--    </ng-container>-->
-<!--  </tr>-->
   <tr *ngFor="let row of table.data" (click)="onSelectedRow(row.id)" (dblclick)="onView.emit(selectedRow)"
       [ngClass]="{rowSelected: row.id === selectedRowId}">
     <td *ngFor="let column of columns">{{ row[column.field] }}</td>
+    <ng-container *ngIf="!hideActions">
+      <td *ngFor="let action of actions">
+        <a (click)="onActionSelect(action)">{{ action.label }}</a>
+        <nz-divider nzType="vertical"></nz-divider>
+      </td>
+    </ng-container>
   </tr>
   </tbody>
 </nz-table>
