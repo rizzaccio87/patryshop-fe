@@ -8,11 +8,11 @@ import {map} from 'rxjs/operators';
 @Injectable()
 export class CakeService {
 
-  private static RESOURCE = 'cake';
+  private static RESOURCE = 'cakes';
   private endpoint: string;
 
   constructor(private request: RequestService, private http: HttpClient) {
-    this.endpoint = this.request.baseUrl + CakeService.RESOURCE;
+    this.endpoint = `${this.request.baseUrl}/${CakeService.RESOURCE}`;
   }
 
   loadCakes(): Observable<Cake[]> {
