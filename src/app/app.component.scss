@@ -41,23 +41,6 @@
 .content-container {
   margin-top: 64px;
 
-  nz-sider {
-    box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
-
-    ::ng-deep .ant-layout-sider-children {
-      position: fixed;
-      height: calc(100vh - 64px);
-      overflow-x: hidden;
-      overflow-y: auto;
-      width: inherit;
-    }
-
-    .sider-menu {
-      border-right: 0;
-      padding: 15px 0;
-    }
-  }
-
   nz-content {
     background: #fff;
     padding: 30px 40px;
