@@ -1,4 +1,4 @@
 export interface Action {
   label: string;
-  type: 'create' | 'update' | 'remove';
+  type: 'create' | 'view' | 'update' | 'remove';
 }
