@@ -3,12 +3,26 @@
 <nz-tabset>
   <nz-tab nzTitle="Dolci">
     <ng-template nz-tab>
-      <!-- TODO -->
+      <app-back-office-tab
+        tabTitle="Dolci"
+        tabType="cake"
+        createButtonLabel="Aggiungi Torta"
+        [items]="cakes$ | async"
+        [columns]="cakeColumns"
+        [actions]="cakeActions"
+      ></app-back-office-tab>
     </ng-template>
   </nz-tab>
   <nz-tab nzTitle="Ordini">
     <ng-template nz-tab>
-      <!-- TODO -->
+      <app-back-office-tab
+        tabTitle="Ordini"
+        tabType="order"
+        createButtonLabel="Aggiungi Ordine"
+        [items]="orders$ | async"
+        [columns]="orderColumns"
+        [actions]="orderActions"
+      ></app-back-office-tab>
     </ng-template>
   </nz-tab>
 </nz-tabset>
