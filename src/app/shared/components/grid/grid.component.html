@@ -16,7 +16,7 @@
     <ng-container *ngIf="!hideActions">
       <td>
         <ng-container *ngFor="let action of actions">
-          <a (click)="onActionSelect(action)">{{ action.label }}</a>
+          <a (click)="onActionSelect(action, row)">{{ action.label }}</a>
           <nz-divider nzType="vertical"></nz-divider>
         </ng-container>
       </td>

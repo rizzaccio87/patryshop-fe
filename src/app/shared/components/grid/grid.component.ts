@@ -46,10 +46,10 @@ export class GridComponent<T extends GridRow> implements OnInit {
     this.rowSelect.emit(this.selectedRow);
   }
 
-  onActionSelect(action: Action): void {
+  onActionSelect(action: Action, row: T): void {
     this.actionSelect.emit({
       action,
-      row: this.selectedRow
+      row
     });
   }
 }
