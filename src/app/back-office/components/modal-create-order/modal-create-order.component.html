@@ -10,7 +10,7 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired>Disponibilità</nz-form-label>
     <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="amountErrorTpl">
-      <input nz-input formControlName="amount" type="number" />
+      <input nz-input formControlName="amount" type="number" [min]="1"/>
       <ng-template #amountErrorTpl let-control>
         <ng-container *ngIf="control.hasError('required')">
           Inserisci la disponibilità!

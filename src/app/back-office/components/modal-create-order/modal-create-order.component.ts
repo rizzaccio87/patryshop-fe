@@ -5,7 +5,6 @@ import {OrderService} from '../../../core/services/order.service';
 import {Order} from '../../../core/interfaces/order';
 import {Cake} from '../../../core/interfaces/cake';
 import {CakeService} from '../../../core/services/cake.service';
-// import moment = require('moment');
 
 @Component({
   selector: 'app-modal-create-order',
@@ -32,12 +31,6 @@ export class ModalCreateOrderComponent {
   onConfirm(): void {
     if (this.form.valid) {
       const order = this.form.value as Order;
-      // const selectedCake = this.cakes.find(cake => cake.id === order.cakeId);
-
-      // order.cakeName = selectedCake?.name;
-      // order.creationTimestamp = moment().toDate();
-      // order.price = selectedCake.price;
-
       this.orderService.addOrder(order).subscribe((res) => {
         this.modal.close(res);
       }, () => {

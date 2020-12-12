@@ -10,6 +10,7 @@ import {NzModalService} from 'ng-zorro-antd/modal';
 import {ModalCreateCakeComponent} from '../modal-create-cake/modal-create-cake.component';
 import {ModalUpdateCakeComponent} from '../modal-update-cake/modal-update-cake.component';
 import {ModalCreateOrderComponent} from '../modal-create-order/modal-create-order.component';
+import {ModalUpdateOrderComponent} from '../modal-update-order/modal-update-order.component';
 
 @Component({
   selector: 'app-back-office',
@@ -86,10 +87,11 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
         this.showCreateModal(tabType);
         break;
       case 'view':
-        this.showViewModal(tabType, event.row.id);
+        this.showViewModal(event.row.id);
         break;
       case 'update':
-        this.showUpdateModal(tabType, event.row.id);
+        const id = (tabType === 'cake') ? event.row.id : event.row.orderId;
+        this.showUpdateModal(tabType, id);
         break;
       case 'remove':
         this.showRemoveConfirmModal(tabType, event.row);
@@ -115,7 +117,7 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
             }
           }));
         } else {
-          this.subscription.add(this.orderService.removeOrder(item.id).subscribe((result) => {
+          this.subscription.add(this.orderService.removeOrder(item.orderId).subscribe((result) => {
             if (result) {
               this.orders$ = this.orderService.loadOrders();
             }
@@ -145,10 +147,10 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
 
   private showUpdateModal(tabType: 'cake' | 'order', id: string): void {
     const title = (tabType === 'cake') ? 'Modifica Torta' : 'Modifica Ordine';
-    // const modalComponent = (tabType === 'cake') ? ModalCreateCakeComponent : ModalCreateOrderComponent;
+    const modalComponent = (tabType === 'cake') ? ModalUpdateCakeComponent : ModalUpdateOrderComponent;
     const modalRef = this.modalService.create({
       nzTitle: title,
-      nzContent: ModalUpdateCakeComponent,
+      nzContent: modalComponent as any,
       nzComponentParams: {
         id
       }
@@ -164,9 +166,8 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
     });
   }
 
-  private showViewModal(tabType: 'cake' | 'order', id: string): void {
-    const title = (tabType === 'cake') ? 'Visualizza Torta' : 'Visualizza Ordine';
-    // const modalComponent = (tabType === 'cake') ? ModalCreateCakeComponent : ModalCreateOrderComponent;
+  private showViewModal(id: string): void {
+    const title = 'Visualizza Torta';
     this.modalService.create({
       nzTitle: title,
       nzContent: ModalUpdateCakeComponent,

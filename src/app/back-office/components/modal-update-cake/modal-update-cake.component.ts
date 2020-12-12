@@ -25,7 +25,6 @@ export class ModalUpdateCakeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.id);
     this.cakeService.getCake(this.id).subscribe((cake) => {
       this.form.get('name').setValue(cake.name);
       this.form.get('price').setValue(cake.price);
