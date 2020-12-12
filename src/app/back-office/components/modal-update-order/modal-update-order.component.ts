@@ -42,7 +42,7 @@ export class ModalUpdateOrderComponent implements OnInit {
       this.orderService.updateOrder(this.id, order).subscribe((res) => {
         this.modal.close(res);
       }, () => {
-        this.modal.close(false);
+        this.modal.close('error');
       });
     }
   }

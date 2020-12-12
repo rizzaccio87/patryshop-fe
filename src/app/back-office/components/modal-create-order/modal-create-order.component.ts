@@ -34,7 +34,7 @@ export class ModalCreateOrderComponent {
       this.orderService.addOrder(order).subscribe((res) => {
         this.modal.close(res);
       }, () => {
-        this.modal.close(false);
+        this.modal.close('error');
       });
     }
   }

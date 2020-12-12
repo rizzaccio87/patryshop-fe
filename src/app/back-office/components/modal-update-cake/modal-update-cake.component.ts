@@ -45,7 +45,7 @@ export class ModalUpdateCakeComponent implements OnInit {
         this.cakeService.updateCake(this.id, cake).subscribe((res) => {
           this.modal.close(res);
         }, () => {
-          this.modal.close(false);
+          this.modal.close('error');
         });
       }
     } else {

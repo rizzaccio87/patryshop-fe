@@ -122,7 +122,7 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
       nzContent: modalComponent as any
     });
     modalRef.afterClose.asObservable().subscribe(res => {
-      if (res) {
+      if (res && res !== 'error') {
         let notificationTitle = '';
         let notificationMessage = '';
 
@@ -137,7 +137,7 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
         }
 
         this.notification.create('success', notificationTitle, notificationMessage);
-      } else {
+      } else if (res === 'error') {
         // error
         this.notification.create(
           'error',
@@ -159,7 +159,7 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
       }
     });
     modalRef.afterClose.asObservable().subscribe(res => {
-      if (res) {
+      if (res && res !== 'error') {
         let notificationTitle = '';
         let notificationMessage = '';
 
@@ -174,7 +174,7 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
         }
 
         this.notification.create('success', notificationTitle, notificationMessage);
-      } else {
+      } else if (res === 'error') {
         // error
         this.notification.create(
           'error',

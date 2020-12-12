@@ -29,7 +29,7 @@ export class ModalCreateCakeComponent {
       this.cakeService.addCake(cake).subscribe((res) => {
         this.modal.close(res);
       }, () => {
-        this.modal.close(false);
+        this.modal.close('error');
       });
     }
   }
