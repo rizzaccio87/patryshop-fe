@@ -4,9 +4,33 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Order} from '../interfaces/order';
+import {GridColumn} from '../../shared/interfaces/grid';
+import {Action} from '../../shared/interfaces/action';
 
 @Injectable()
 export class OrderService {
+
+  public static GRID_COLUMNS: GridColumn[] = [{
+    field: 'creationTimestamp',
+    title: 'Data'
+  }, {
+    field: 'cakeName',
+    title: 'Dolce'
+  }, {
+    field: 'amount',
+    title: 'Disponibilità'
+  }, {
+    field: 'price',
+    title: 'Prezzo'
+  }];
+
+  public static GRID_ACTIONS: Action[] = [{
+    label: 'Modifica',
+    type: 'update'
+  }, {
+    label: 'Rimuovi',
+    type: 'remove'
+  }];
 
   private static RESOURCE = 'orders';
   private endpoint: string;

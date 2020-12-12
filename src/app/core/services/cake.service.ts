@@ -4,9 +4,30 @@ import {HttpClient} from '@angular/common/http';
 import {Cake} from '../interfaces/cake';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {Action} from '../../shared/interfaces/action';
+import {GridColumn} from '../../shared/interfaces/grid';
 
 @Injectable()
 export class CakeService {
+
+  public static GRID_COLUMNS: GridColumn[] = [{
+    field: 'name',
+    title: 'Nome Dolce'
+  }, {
+    field: 'price',
+    title: 'Prezzo'
+  }];
+
+  public static GRID_ACTIONS: Action[] = [{
+    label: 'Visualizza',
+    type: 'view'
+  }, {
+    label: 'Modifica',
+    type: 'update'
+  }, {
+    label: 'Rimuovi',
+    type: 'remove'
+  }];
 
   private static RESOURCE = 'cakes';
   private endpoint: string;

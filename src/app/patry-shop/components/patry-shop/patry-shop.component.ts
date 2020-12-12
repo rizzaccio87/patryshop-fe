@@ -15,19 +15,7 @@ export class PatryShopComponent implements OnInit {
   public columns: GridColumn[] = [];
 
   constructor(private orderService: OrderService) {
-    this.columns = [{
-      field: 'creationTimestamp',
-      title: 'Data'
-    }, {
-      field: 'cakeName',
-      title: 'Dolce'
-    }, {
-      field: 'amount',
-      title: 'Disponibilità'
-    }, {
-      field: 'price',
-      title: 'Prezzo'
-    }];
+    this.columns = OrderService.GRID_COLUMNS;
   }
 
   ngOnInit(): void {
