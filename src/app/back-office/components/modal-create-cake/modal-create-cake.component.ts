@@ -9,7 +9,7 @@ import {Cake} from '../../../core/interfaces/cake';
   templateUrl: './modal-create-cake.component.html'
 })
 export class ModalCreateCakeComponent {
-  form: FormGroup;
+  public form: FormGroup;
 
   constructor(private fb: FormBuilder, private modal: NzModalRef, private cakeService: CakeService) {
     this.form = this.fb.group({

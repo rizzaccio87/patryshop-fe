@@ -4,7 +4,6 @@
   <nz-tab nzTitle="Dolci">
     <ng-template nz-tab>
       <app-back-office-tab
-        tabTitle="Dolci"
         tabType="cake"
         createButtonLabel="Aggiungi Torta"
         [items]="cakes$ | async"
@@ -14,10 +13,9 @@
       ></app-back-office-tab>
     </ng-template>
   </nz-tab>
-  <nz-tab nzTitle="Ordini">
+  <nz-tab nzTitle="Vetrina">
     <ng-template nz-tab>
       <app-back-office-tab
-        tabTitle="Vetrina"
         tabType="order"
         createButtonLabel="Aggiungi Ordine"
         [items]="orders$ | async"

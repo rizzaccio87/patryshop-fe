@@ -9,6 +9,7 @@ import {Action} from '../../../shared/interfaces/action';
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {ModalCreateCakeComponent} from '../modal-create-cake/modal-create-cake.component';
 import {ModalUpdateCakeComponent} from '../modal-update-cake/modal-update-cake.component';
+import {ModalCreateOrderComponent} from '../modal-create-order/modal-create-order.component';
 
 @Component({
   selector: 'app-back-office',
@@ -107,7 +108,6 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
     this.modalService.confirm({
       nzTitle: title,
       nzOnOk: () => {
-        console.log('OK');
         if (tabType === 'cake') {
           this.subscription.add(this.cakeService.removeCake(item.id).subscribe((result) => {
             if (result) {
@@ -127,10 +127,10 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
 
   private showCreateModal(tabType: 'cake' | 'order'): void {
     const title = (tabType === 'cake') ? 'Aggiungi Torta' : 'Aggiungi Ordine';
-    // const modalComponent = (tabType === 'cake') ? ModalCreateCakeComponent : ModalCreateOrderComponent;
+    const modalComponent = (tabType === 'cake') ? ModalCreateCakeComponent : ModalCreateOrderComponent;
     const modalRef = this.modalService.create({
       nzTitle: title,
-      nzContent: ModalCreateCakeComponent
+      nzContent: modalComponent as any
     });
     modalRef.afterClose.asObservable().subscribe(res => {
       if (res) {
