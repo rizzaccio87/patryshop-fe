@@ -104,8 +104,8 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
 
   private showRemoveConfirmModal(tabType: 'cake' | 'order', item: any): void {
     const title = (tabType === 'cake') ?
-      `<i>Vuoi rimuovere la torta ${item?.name}? </i>` :
-      `<i>Vuoi rimuovere l'ordine per la torta ${item?.cakeName}? </i>`;
+      `<i>Vuoi rimuovere il dolce ${item?.name}? </i>` :
+      `<i>Vuoi rimuovere la disponibilità del dolce ${item?.cakeName}? </i>`;
 
     this.modalService.confirm({
       nzTitle: title,
@@ -128,7 +128,7 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
   }
 
   private showCreateModal(tabType: 'cake' | 'order'): void {
-    const title = (tabType === 'cake') ? 'Aggiungi Torta' : 'Aggiungi Ordine';
+    const title = (tabType === 'cake') ? 'Aggiungi Dolce' : 'Aggiungi Ordine';
     const modalComponent = (tabType === 'cake') ? ModalCreateCakeComponent : ModalCreateOrderComponent;
     const modalRef = this.modalService.create({
       nzTitle: title,
@@ -146,7 +146,7 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
   }
 
   private showUpdateModal(tabType: 'cake' | 'order', id: string): void {
-    const title = (tabType === 'cake') ? 'Modifica Torta' : 'Modifica Ordine';
+    const title = (tabType === 'cake') ? 'Modifica Dolce' : 'Modifica Ordine';
     const modalComponent = (tabType === 'cake') ? ModalUpdateCakeComponent : ModalUpdateOrderComponent;
     const modalRef = this.modalService.create({
       nzTitle: title,
@@ -167,7 +167,7 @@ export class BackOfficeComponent implements OnInit, OnDestroy {
   }
 
   private showViewModal(id: string): void {
-    const title = 'Visualizza Torta';
+    const title = 'Visualizza Dolce';
     this.modalService.create({
       nzTitle: title,
       nzContent: ModalUpdateCakeComponent,
