@@ -14,9 +14,11 @@
       [ngClass]="{rowSelected: row.id === selectedRowId}">
     <td *ngFor="let column of columns">{{ row[column.field] }}</td>
     <ng-container *ngIf="!hideActions">
-      <td *ngFor="let action of actions">
-        <a (click)="onActionSelect(action)">{{ action.label }}</a>
-        <nz-divider nzType="vertical"></nz-divider>
+      <td>
+        <ng-container *ngFor="let action of actions">
+          <a (click)="onActionSelect(action)">{{ action.label }}</a>
+          <nz-divider nzType="vertical"></nz-divider>
+        </ng-container>
       </td>
     </ng-container>
   </tr>
