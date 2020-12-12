@@ -6,6 +6,8 @@ import {map} from 'rxjs/operators';
 import {Order} from '../interfaces/order';
 import {GridColumn} from '../../shared/interfaces/grid';
 import {Action} from '../../shared/interfaces/action';
+// @ts-ignore
+import moment from 'moment';
 
 @Injectable()
 export class OrderService {
@@ -41,8 +43,13 @@ export class OrderService {
 
   loadOrders(): Observable<Order[]> {
     return this.http.get(`${this.endpoint}`).pipe(
-      map((res) => {
-        return (res || []) as Order[];
+      map((res: any[]) => {
+        return (res.map(item => {
+          return {
+            ...item,
+            creationTimestamp: moment(item.creationTimestamp).format('DD/MM/YYYY')
+          };
+        }) || []) as Order[];
       }));
   }
 
