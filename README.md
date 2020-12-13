@@ -1,27 +1,25 @@
 # PatryshopFe
 
+This project represents the frontend part for the patry shop project. Refer to https://github.com/rizzaccio87/patryshop for the backend part of the project.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.4.
 
-## Development server
+## Installation guidelines
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Install Node.js from https://nodejs.org/en/download/. Npm will install automatically. Test it by doing (in a terminal)
+```
+$ node -v
+$ npm -v
+```
 
-## Code scaffolding
+2. Install Angular CLI via npm
+```
+$ npm install -g @angular/cli
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3. Clone this repository and install the node dependencies, navigating to your project folder and doing (in a terminal)
+```
+$ cd ${project-parent-folder}/patryshop-fe
+$ npm install
+```
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+4. Run the application doing `ng serve`. Navigate to `http://localhost:4200/`.
