@@ -1,0 +1,56 @@
+.main-container {
+  min-height: 100vh;
+
+  nz-header {
+    position: fixed;
+    width: 100%;
+    box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
+    z-index: 2;
+
+    .logo {
+      float: left;
+
+      i {
+        font-size: 20px;
+        margin-right: 20px;
+        position: relative;
+        top: 3px;
+        cursor: pointer;
+      }
+
+      img {
+        height: 45px;
+      }
+    }
+
+    .header-menu {
+      float: right;
+
+      a {
+        color: inherit;
+
+        .bigger-icon {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+}
+
+.content-container {
+  margin-top: 64px;
+
+  nz-content {
+    background: #fff;
+    padding: 30px 40px;
+  }
+
+  nz-footer {
+    margin-top: 40px;
+    width: 100%;
+  }
+
+}
+
+

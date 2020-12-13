@@ -1,0 +1,11 @@
+<h3>{{tabTitle}}</h3>
+
+<button nz-button nzType="primary" (click)="onCreateItem()">{{createButtonLabel}}</button>
+
+<app-grid
+  [rows]="items"
+  [columns]="columns"
+  [hideActions]="false"
+  [actions]="actions"
+  (actionSelect)="onGridActionSelect($event)"
+></app-grid>

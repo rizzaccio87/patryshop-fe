@@ -1,0 +1,26 @@
+<nz-table #table [nzData]="rows">
+  <thead>
+  <tr>
+    <ng-container *ngFor="let column of columns">
+      <th [nzColumnKey]="column.field">{{column.title}}</th>
+    </ng-container>
+    <ng-container *ngIf="!hideActions">
+      <th>Azioni</th>
+    </ng-container>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of table.data" (click)="onSelectedRow(row.id)" (dblclick)="onView.emit(selectedRow)"
+      [ngClass]="{rowSelected: row.id === selectedRowId}">
+    <td *ngFor="let column of columns">{{ row[column.field] }}</td>
+    <ng-container *ngIf="!hideActions">
+      <td>
+        <ng-container *ngFor="let action of actions">
+          <a (click)="onActionSelect(action, row)">{{ action.label }}</a>
+          <nz-divider nzType="vertical"></nz-divider>
+        </ng-container>
+      </td>
+    </ng-container>
+  </tr>
+  </tbody>
+</nz-table>
